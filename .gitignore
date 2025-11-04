@@ -11,3 +11,4 @@ src/**/*.pdf
 
 # book images
 book/**/*.png
+/src
