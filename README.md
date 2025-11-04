@@ -39,12 +39,15 @@ In order to use this repository path independently (can run any script from any 
 
 * `PYTHONPATH`: Absolute path to your python_tools directory
 ```sh
-# Two examples of how to set the PYTHONPATH variable for Linux / MacOS
+# Set the path to python_tools
+$ export PYTHONPATH=$PYTHONPATH:"/Users/jacoconradie/Documents/GitHub/Surreal Technologies/AWP/src/python_tools"
 
-$ export PYTHONPATH=$PYTHONPATH:/home/alfonso/AWP/src/python_tools
-# or
-$ export PYTHONPATH=$PYTHONPATH:~/AWP/src/python_tools
+# Set the path to the AWP directory
+$ export AWP="/Users/jacoconradie/Documents/GitHub/Surreal Technologies/AWP"
 ```
+
+
+
 
 ```batch
 rem Examples of how to set the PYTHONPATH variable for Windows
@@ -84,3 +87,14 @@ $ python3 -m pytest src/python_tools/unit_tests/ -vv
 ```
 
 The only difference between those two commands is that running `pytest` through the Python interpreter is that `python` [will add your current directory to sys.path](https://docs.pytest.org/en/6.2.x/usage.html#cmdline)
+
+## Virual Environment
+```sh
+# To create
+# Replace .venv with .your_name if you need a new name
+$ python3 -m venv .venv
+
+# To run
+# Replace .venv with .your_name if you created venv with a different name
+$ source .venv/bin/activate
+```

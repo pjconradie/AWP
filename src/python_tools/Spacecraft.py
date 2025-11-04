@@ -96,6 +96,7 @@ class Spacecraft:
 		self.check_min_alt.__func__.direction   = -1
 		self.check_max_alt.__func__.direction   =  1
 		self.check_enter_SOI.__func__.direction = -1
+		self.check_exit_SOI.__func__.direction  = -1
 
 		self.check_min_alt.__func__.terminal = True
 		self.stop_condition_functions        = [ self.check_min_alt ]
@@ -107,7 +108,8 @@ class Spacecraft:
 		self.stop_conditions_map = {
 			'min_alt'  : self.check_min_alt,
 			'max_alt'  : self.check_max_alt,
-			'enter_SOI': self.check_enter_SOI
+			'enter_SOI': self.check_enter_SOI,
+			'exit_SOI' : self.check_exit_SOI
 			}
 
 		for key in self.config[ 'stop_conditions' ].keys():
@@ -145,6 +147,13 @@ class Spacecraft:
 		return nt.norm( state[ :3 ] ) -\
 			      self.cb[ 'radius' ] -\
 			      self.config[ 'stop_conditions' ][ 'max_alt' ]
+	
+	def check_exit_SOI( self, states, cb):
+		if nt.norm( self.states[ self.step, :3 ] ) > self.cb[ 'SOI' ]:
+			if self.config[ 'print_stop' ]:
+				self.print_stop_condition( '%s SOI exit' % self.cb[ 'name' ] )
+			return False
+		return True
 
 	def check_enter_SOI( self, et, state ):
 		body      = self.config[ 'stop_conditions' ][ 'enter_SOI' ]
