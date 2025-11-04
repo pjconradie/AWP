@@ -31,6 +31,7 @@ import spice_data     as sd
 from numerical_tools import norm
 
 if __name__ == '__main__':
+	
 	AWP_path = os.environ.get( 'AWP' )
 	if AWP_path is not None:
 		base_dir = AWP_path
