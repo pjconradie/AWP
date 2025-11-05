@@ -11,3 +11,6 @@ src/**/*.pdf
 
 # book images
 book/**/*.png
+
+# mac junk
+.DS_Store
